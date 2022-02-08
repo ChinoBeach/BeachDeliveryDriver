@@ -5,8 +5,8 @@ using UnityEngine;
 public class Driver : MonoBehaviour
 {
     //Class variables (SerializedFields make it changeable within Unity. Changes made in Unity dont save here)
-    [SerializeField] float steerSpeed = 300f;
-    [SerializeField] float moveSpeed = 20f;
+    [SerializeField] float fltSteerSpeed = 300f;
+    [SerializeField] float fltMoveSpeed = 20f;
 
     // Start is called before the first frame update
     void Start()
@@ -19,13 +19,13 @@ public class Driver : MonoBehaviour
     void Update()
     {
         //Method variables
-        float steerAmount = Input.GetAxis("Horizontal") * steerSpeed * Time.deltaTime;
-        float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float fltSteerAmount = Input.GetAxis("Horizontal") * fltSteerSpeed * Time.deltaTime;
+        float fltMoveAmount = Input.GetAxis("Vertical") * fltMoveSpeed * Time.deltaTime;
 
         //Turn the car (0 x, 0 y, steerAmount z)
-        transform.Rotate(0,0,-steerAmount);
+        transform.Rotate(0,0,-fltSteerAmount);
 
         //Move the car forward/backward(0 x, moveSpeed y, 0 z)
-        transform.Translate(0,moveAmount,0);
+        transform.Translate(0,fltMoveAmount,0);
     }
 }
