@@ -7,11 +7,26 @@ public class Driver : MonoBehaviour
     //Class variables (SerializedFields make it changeable within Unity. Changes made in Unity dont save here)
     [SerializeField] float fltSteerSpeed = 300f;
     [SerializeField] float fltMoveSpeed = 20f;
+    [SerializeField] float fltSlowSpeed = 15f;
+    [SerializeField] float fltBoostSpeed = 30f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        //if you run over a boost
+        if(other.tag == "SpeedUp")
+        {
+            //apply boost to speed
+            fltMoveSpeed = fltBoostSpeed;
+            Debug.Log("Boosted!");
+        }
+
+        //if you run over a speedbump
+        if(other.tag == "SlowDown")
+        {
+            //apply slowdown to speed
+            fltMoveSpeed = fltSlowSpeed;
+            Debug.Log("Speed Reduced!");
+        }
 
     }
 
